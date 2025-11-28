@@ -63,4 +63,22 @@ public class ItemDatabase : MonoBehaviour
             }
         }
     }
+
+    // 給其他腳本呼叫用的：給我一個 ID，我回傳那個道具的資料給你
+    public Item GetItemByID(int id)
+    {
+        // 跑迴圈去找清單裡的每一個道具
+        foreach (var item in allItems)
+        {
+            // 如果找到 ID 一樣的
+            if (item.id == id)
+            {
+                return item; // 把這個道具資料交出去
+            }
+        }
+        
+        // 如果找遍了都沒有 (例如你輸入 ID: 999)，就回傳 null
+        Debug.LogWarning("找不到 ID 為 " + id + " 的道具！");
+        return null;
+    }
 }
